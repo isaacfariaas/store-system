@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+require __DIR__ . '/auth.php';
 
 Route::get('/dashboard', function () {
     return view('main.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::resource('sells', [SellsController::class]);
+Route::get('sell_list', [SellsController::class, 'getSell'])->name('sell_list');
+
+
